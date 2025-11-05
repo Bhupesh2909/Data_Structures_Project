@@ -1,0 +1,18 @@
+# Ignore object and binary files
+obj/
+*.o
+h2optimizer
+
+# Ignore build artifacts
+*.exe
+*.out
+
+# Ignore temporary/system files
+*.log
+*.tmp
+
+# Ignore IDE/project files (optional)
+.vscode/
+*.code-workspace
+*.DS_Store
+Thumbs.db

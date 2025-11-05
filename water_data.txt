@@ -1,0 +1,64 @@
+H₂O-Plus Water Management System - Sample Input Data
+
+----------------------------------------------------------------------
+
+1. [PLACES]: ID is assigned by line order (starts at 0).
+
+Format: Name Balance Priority(1-5) SoilType
+
+----------------------------------------------------------------------
+
+[PLACES]
+
+ID 0: Main Reservoir (Source)
+
+MainReservoir 400 1 None
+
+ID 1: Local Reservoir (Source)
+
+LocalReservoir 150 2 None
+
+ID 2: City Center (Sink) - Highest Priority
+
+CityCenter -250 1 None
+
+ID 3: Vegetable Farm (Sink) - Medium Priority, Loam Soil
+
+VegFarm -100 3 Loam
+
+ID 4: Fruit Orchard (Sink) - Lower Priority, Sand Soil
+
+Orchard -150 5 Sand
+
+ID 5: Recycled Water (Small Source)
+
+RecycledWater 50 4 None
+
+----------------------------------------------------------------------
+
+2. [CONNECTIONS]: Define the pipes (edges) between the PLACE IDs.
+
+Format: From_ID To_ID Capacity(KL/hr) BaseCost($/KL)
+
+----------------------------------------------------------------------
+
+[CONNECTIONS]
+
+Source 0 (Main Reservoir) connections:
+
+0 2 200 10      # High capacity, medium cost to City Center
+0 3 100 15      # Medium capacity, higher cost to Veg Farm
+0 4 100 20      # Medium capacity, highest cost to Orchard
+
+Source 1 (Local Reservoir) connections:
+
+1 2 50 5        # Low capacity, lowest cost to City Center (local line)
+1 3 50 8        # Low capacity, low cost to Veg Farm
+
+Source 5 (Recycled Water) connections:
+
+5 3 40 3        # Low capacity, very cheap to Veg Farm (close proximity)
+
+Pipe between sinks (e.g., sharing/transfer capabilities):
+
+3 4 20 2        # Veg Farm (3) can divert a little water to Orchard (4) if supply is tight
